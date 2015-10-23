@@ -9,8 +9,8 @@ LIBRARY_PATHS = -LC:\devlib\mingw\x64\lib
 COMPILER_FLAGS = -w -Wl,-subsystem,windows
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2
 
-OBJS = 03_event_driven_programming.c
-OBJ_NAME = 03.exe
+OBJS = 04_key_presses.c
+OBJ_NAME = 04.exe
 
 
 all: $(OBJS)

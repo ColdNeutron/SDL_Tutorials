@@ -11,6 +11,15 @@ typedef enum bool {false, true} bool;
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
+//The window we'll be rendering to
+SDL_Window* gWindow = NULL;
+
+//The surface contained by the window
+SDL_Surface* gScreenSurface = NULL;
+
+//The image we will load and show on the screen
+SDL_Surface* gXOut = NULL;
+
 //Starts up SDL and creates window
 bool init();
 
@@ -20,14 +29,55 @@ bool loadMedia();
 //Frees media and shuts down SDL
 void close();
 
-//The window we'll be rendering to
-SDL_Window* gWindow = NULL;
+int main( int argc, char* args[] )
+{
+	//Start up SDL and create window
+	if( !init() )
+	{
+		printf( "Failed to initialize!\n" );
+	}
+	else
+	{
+		//Load media
+		if( !loadMedia() )
+		{
+			printf( "Failed to load media!\n" );
+		}
+		else
+		{
+			//Main loop flag
+			bool quit = false;
 
-//The surface contained by the window
-SDL_Surface* gScreenSurface = NULL;
+			//Event handler
+			SDL_Event e;
 
-//The image we will load and show on the screen
-SDL_Surface* gXOut = NULL;
+			//While application is running
+			while( !quit )
+			{
+				//Handle events on queue
+				while( SDL_PollEvent( &e ) != 0 )
+				{
+					//User requests quit
+					if( e.type == SDL_QUIT )
+					{
+						quit = true;
+					}
+				}
+
+				//Apply the image
+				SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
+
+				//Update the surface
+				SDL_UpdateWindowSurface( gWindow );
+			}
+		}
+	}
+
+	//Free resources and close SDL
+	close();
+
+	return 0;
+}
 
 bool init()
 {
@@ -89,52 +139,3 @@ void close()
 	SDL_Quit();
 }
 
-int main( int argc, char* args[] )
-{
-	//Start up SDL and create window
-	if( !init() )
-	{
-		printf( "Failed to initialize!\n" );
-	}
-	else
-	{
-		//Load media
-		if( !loadMedia() )
-		{
-			printf( "Failed to load media!\n" );
-		}
-		else
-		{
-			//Main loop flag
-			bool quit = false;
-
-			//Event handler
-			SDL_Event e;
-
-			//While application is running
-			while( !quit )
-			{
-				//Handle events on queue
-				while( SDL_PollEvent( &e ) != 0 )
-				{
-					//User requests quit
-					if( e.type == SDL_QUIT )
-					{
-						quit = true;
-					}
-				}
-
-				//Apply the image
-				SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
-
-				//Update the surface
-				SDL_UpdateWindowSurface( gWindow );
-			}
-		}
-	}
-
-	//Free resources and close SDL
-	close();
-
-	return 0;
-}

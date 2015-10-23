@@ -5,10 +5,10 @@ OBJS = 01_hello_SDL.c
 CC = gcc
 
 #INCLUDE_PATHS specifies the additional include paths we'll need
-INCLUDE_PATHS = -IC:\devlib_mingw\x64\include\SDL2
+INCLUDE_PATHS = -IC:\devlib\mingw\x64\include\SDL2
 
 #LIBRARY_PATHS specifies the additional library paths we'll need
-LIBRARY_PATHS = -LC:\devlib_mingw\x64\lib
+LIBRARY_PATHS = -LC:\devlib\mingw\x64\lib
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
