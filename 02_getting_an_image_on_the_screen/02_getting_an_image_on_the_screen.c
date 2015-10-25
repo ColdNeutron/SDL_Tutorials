@@ -19,13 +19,13 @@ SDL_Surface* gScreenSurface = NULL;
 SDL_Surface* gHelloWorld = NULL;
 
 //Starts up SDL and creates window
-int init(void);
+int init();
 
 //Loads media
-int loadMedia(void);
+int loadMedia();
 
 //Frees media and shuts down SDL
-void close(void);
+void close();
 
 int main( int argc, char* args[] )
 {

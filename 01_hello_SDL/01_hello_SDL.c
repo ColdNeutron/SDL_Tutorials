@@ -6,8 +6,8 @@ and may not be redistributed without written permission.*/
 #include <stdio.h>
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 720;
 
 int main( int argc, char* args[] )
 {
@@ -36,7 +36,7 @@ int main( int argc, char* args[] )
 			screenSurface = SDL_GetWindowSurface( window );
 
 			//Fill the surface white
-			SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
+			SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0x27, 0x28, 0x22 ) );
 			
 			//Update the surface
 			SDL_UpdateWindowSurface( window );
